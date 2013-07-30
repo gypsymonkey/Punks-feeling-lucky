@@ -60,5 +60,9 @@ void remover(TabelaHash *th, char* chave)
 
 void imprimirTabela(TabelaHash* th)
 {
-    /* ... */
+    int i;
+    for (i = 0; i < TAMANHO_MAXIMO_H; ++i)
+    {
+        imprimirLista(th->tabela[i]);
+    }
 }
