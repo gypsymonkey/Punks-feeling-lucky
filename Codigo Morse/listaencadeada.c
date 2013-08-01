@@ -81,7 +81,7 @@ char* getValor(No* primeiro, char* chave)
 
     while(atual != NULL)
     {
-        if (atual->item->chave == chave)
+        if (!strcmp(atual->item->chave, chave))
         {
             return atual->item->valor;
         }
