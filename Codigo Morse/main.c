@@ -10,6 +10,10 @@
 #include <string.h>
 #include "hash.h"
 #include "listaencadeada.h"
+#include "grafo.h"
+
+#define ALT 10
+#define LAR 20
 
 char* winstonSmith(char* str)   //função temporária.
 {
@@ -80,7 +84,7 @@ void testeCache()
     char* entrada;
     char* valor;
 
-    entrada = pegarEntrada(entrada);
+    entrada = pegarEntrada();
     while (strcmp(entrada, "sair"))
     {
         char* aux = get(cache, entrada);
@@ -134,12 +138,39 @@ void testeBalanceamento()
         scanf ("%s", palavra);
     }
 }
+void testeGrafo()
+{
+    Grafo* g = criarGrafo();
+
+    //addAresta(g, 0, 1, "bonkers");
+    addAresta(g, 1, 2, "bonkers");
+    addAresta(g, 1, 5, "bonkers");
+    addAresta(g, 2, 1, "bonkers");
+    addAresta(g, 2, 5, "bonkers");
+    addAresta(g, 2, 3, "bonkers");
+    addAresta(g, 2, 4, "bonkers");
+    addAresta(g, 3, 2, "bonkers");
+    addAresta(g, 3, 4, "bonkers");
+    addAresta(g, 4, 2, "bonkers");
+    addAresta(g, 4, 5, "bonkers");
+    addAresta(g, 4, 3, "bonkers");
+    addAresta(g, 5, 4, "bonkers");
+    addAresta(g, 5, 1, "bonkers");
+    addAresta(g, 5, 2, "bonkers");
+
+
+    imprimirGrafo(g);
+
+    //free(g);/
+}
 
 int main()
 {
     //testeBalanceamento();
     //testeHash();
     //testeLista();
-    testeCache();
+    //testeCache();
+    //testeGrafo();
+
     return 0;
 }

@@ -4,7 +4,9 @@
 
 #include "grafo.h"
 
-#define TAMANHO_MAXIMO_G 11
+#define TAMANHO_MAXIMO_G 6
+#define ALT 10
+#define LAR 20
 
 struct listaAdj {
     int id;
@@ -30,14 +32,34 @@ Grafo* criarGrafo()
     return novoGrafo;
 }
 
-void addVertice(Grafo* grafo, int verticeX, int verticeY, char* item)
+void addAresta(Grafo* grafo, int verticeX, int verticeY, char* item)
 {
+
     ListaAdj* vertice = (ListaAdj*) malloc(sizeof(ListaAdj*));
 
     vertice->id = verticeY;
-    strcpy(vertice->item, item);
+    vertice->visitado = 0;
+    //vertice->item = item;
     vertice->proximoVertice = grafo->vertices[verticeX];
-
     grafo->vertices[verticeX] = vertice;
+}
+
+void imprimirGrafo(Grafo* grafo)
+{
+    int i;
+
+    for (i = 0; i < TAMANHO_MAXIMO_G; ++i)
+    {
+        ListaAdj* atual = grafo->vertices[i];
+        printf("[%d]", i);
+        while (atual != NULL)
+        {
+            printf("->%d", atual->id);
+
+            atual = atual->proximoVertice;
+        }
+
+        printf("\n");
+    }
 }
 

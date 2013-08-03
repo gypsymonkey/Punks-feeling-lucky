@@ -14,6 +14,9 @@ typedef struct grafo Grafo;
 Grafo* criarGrafo();
 
 /** Adiciona um novo vertice ao grafo */
-void addVertice(Grafo* grafo, int verticeX, int verticeY, char* item);
+void addAresta(Grafo* grafo, int verticeX, int verticeY, char* item);
+
+/** Imprime o grafo */
+void imprimirGrafo(Grafo* grafo);
 
 #endif // GRAFO_H_INCLUDED

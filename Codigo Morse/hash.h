@@ -19,7 +19,7 @@ char* get(TabelaHash *th, char* chave);
 /**  Remove algum elemento a partir de sua chave */
 void remover(TabelaHash *th, char* chave);
 
-/**  Imprime toda a tabela hash. [Não implementada]. */
+/**  Imprime toda a tabela hash. */
 void imprimirTabela(TabelaHash* th);
 
 #endif // HASH_H_INCLUDED
