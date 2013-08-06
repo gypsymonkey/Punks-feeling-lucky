@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listaencadeada.h"
-//#include "hash.h"
 
 struct no {
     Elemento* item;

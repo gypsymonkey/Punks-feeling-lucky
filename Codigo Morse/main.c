@@ -11,11 +11,13 @@
 #include "hash.h"
 #include "listaencadeada.h"
 #include "grafo.h"
+#include "codigomorse.h"
+#include "arvore.h"
 
 #define ALT 10
 #define LAR 20
 
-char* winstonSmith(char* str)   //função temporária.
+char* winstonSmith(char* str)   //função temporária com propósito de testes.
 {
     int i;
     int size = strlen(str);
@@ -23,7 +25,6 @@ char* winstonSmith(char* str)   //função temporária.
     printf("%d", size);
     for (i = 0; i < size; ++i)
     {
-        //printf("Hey listen!\n");
         vlr[i] = str[i] + 2;
         printf("%c", vlr[i]);
     }
@@ -39,19 +40,16 @@ char* pegarEntrada()
     return s;
 }
 
+/** TESTES */
+
 void testeHash()
 {
     TabelaHash* tab = criarTabelaHash();
 
     char* e;
-    //char e2[7];
-
-    //put(tab, "7", "17");
-    //scanf("%s", entrada);//, entrada2);
 
     e = pegarEntrada();
 
-    //printf("%s: %d\n%s: %d", entrada, funcaoHash(entrada), entrada2, funcaoHash(entrada2));
     while(e)
     {
         if (!strcmp(e, "s"))
@@ -59,23 +57,15 @@ void testeHash()
             break;
         }
         system("cls");
-        //printf("Hey listen!\n");
-
-        //printf("%s", get(tab, e));
         if(!strcmp(get(tab, e), "/b/"))
         {
             put(tab, e, "17");
         }
-        //printf("Hey listen!\n");
-        imprimirTabela(tab);
 
-        //printf("%s\n", get(tab, e));
+        imprimirTabela(tab);
 
         e = pegarEntrada(e);
     }
-
-    //remover(tab, "jose");
-    //printf("%s\n", get(tab, "jose"));
 }
 
 void testeCache()
@@ -100,7 +90,6 @@ void testeCache()
             printf("Nova Palavra!\n");
 
             valor = winstonSmith(entrada);
-            //printf("%s\n", valor);
             put(cache, entrada, valor);
             imprimirTabela(cache);
         }
@@ -113,11 +102,13 @@ void testeLista()
 {
     Elemento* x = init_El("jose", "esoj");
     Elemento* y = init_El("maria", "airam");
+    Elemento* z = init_El("astolfo", "tofalso");
 
     No* P = criarLista();
 
     P = inserirNo(P, x);
     P = inserirNo(P, y);
+    P = inserirNo(P, z);
 
     imprimirLista(P);
 }
@@ -142,27 +133,63 @@ void testeGrafo()
 {
     Grafo* g = criarGrafo();
 
-    //addAresta(g, 0, 1, "bonkers");
-    addAresta(g, 1, 2, "bonkers");
-    addAresta(g, 1, 5, "bonkers");
-    addAresta(g, 2, 1, "bonkers");
-    addAresta(g, 2, 5, "bonkers");
-    addAresta(g, 2, 3, "bonkers");
-    addAresta(g, 2, 4, "bonkers");
-    addAresta(g, 3, 2, "bonkers");
-    addAresta(g, 3, 4, "bonkers");
-    addAresta(g, 4, 2, "bonkers");
-    addAresta(g, 4, 5, "bonkers");
-    addAresta(g, 4, 3, "bonkers");
-    addAresta(g, 5, 4, "bonkers");
-    addAresta(g, 5, 1, "bonkers");
-    addAresta(g, 5, 2, "bonkers");
-
+    addAresta(g, 1, 2);
+    addAresta(g, 1, 5);
+    addAresta(g, 2, 1);
+    addAresta(g, 2, 5);
+    addAresta(g, 2, 3);
+    addAresta(g, 2, 4);
+    addAresta(g, 3, 2);
+    addAresta(g, 3, 4);
+    addAresta(g, 4, 2);
+    addAresta(g, 4, 5);
+    addAresta(g, 4, 3);
+    addAresta(g, 5, 4);
+    addAresta(g, 5, 1);
+    addAresta(g, 5, 2);
 
     imprimirGrafo(g);
 
-    //free(g);/
+    free(g);
 }
+
+void testeArvore()
+{
+    ArvoreBinaria* ab = criarArvoreBinaria('*', NULL, NULL);
+
+
+    ab = inserirNoAB(ab, 'A', "·-");
+    ab = inserirNoAB(ab, 'B', "-···");
+    ab = inserirNoAB(ab, 'C', "-·-·");
+    ab = inserirNoAB(ab, 'D', "-··");
+    ab = inserirNoAB(ab, 'E', "·");
+    ab = inserirNoAB(ab, 'F', "··-·");
+    ab = inserirNoAB(ab, 'G', "--·");
+    ab = inserirNoAB(ab, 'H', "····");
+    ab = inserirNoAB(ab, 'I', "··");
+    ab = inserirNoAB(ab, 'J', "·---");
+    ab = inserirNoAB(ab, 'K', "-·-");
+    ab = inserirNoAB(ab, 'L', "·-··");
+    ab = inserirNoAB(ab, 'M', "--");
+    ab = inserirNoAB(ab, 'N', "-·");
+    ab = inserirNoAB(ab, 'O', "---");
+    ab = inserirNoAB(ab, 'P', "·--·");
+    ab = inserirNoAB(ab, 'Q', "--·-");
+    ab = inserirNoAB(ab, 'R', "·-·");
+    ab = inserirNoAB(ab, 'S', "···");
+    ab = inserirNoAB(ab, 'T', "-");
+    ab = inserirNoAB(ab, 'U', "··-");
+    ab = inserirNoAB(ab, 'V', "···-");
+    ab = inserirNoAB(ab, 'W', "·--");
+    ab = inserirNoAB(ab, 'X', "-··-");
+    ab = inserirNoAB(ab, 'Y', "-·--");
+    ab = inserirNoAB(ab, 'Z', "--··");
+
+    //printf("%c\n", busca(ab, "--.."));
+    imprimirEmOrdem(ab);
+}
+
+/** MAIN */
 
 int main()
 {
@@ -170,7 +197,9 @@ int main()
     //testeHash();
     //testeLista();
     //testeCache();
-    //testeGrafo();
+    //testeGrafo();    //Não funciona direito
+    //testeArvore();
+    interface();
 
     return 0;
 }

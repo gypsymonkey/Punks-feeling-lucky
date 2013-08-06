@@ -37,7 +37,6 @@ int pop(struct pilha* pilha)
 {
     if (pilhaVazia(pilha))
     {
-        //printf ("Pilha vazia!\n");
         return -1;
     } else {
         return pilha->itens[--pilha->tamanho];
@@ -48,7 +47,6 @@ int peek(struct pilha* pilha)
 {
     if (pilhaVazia(pilha))
     {
-        //printf ("Pilha vazia!\n");
         return -1;
     } else {
         return pilha->itens[pilha->tamanho - 1];

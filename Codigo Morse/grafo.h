@@ -2,7 +2,7 @@
 #define GRAFO_H_INCLUDED
 
 /**
-    Definição do tipo ListaAdj contendo quatro elementos: id(int, )item(char), visitado(int) e um
+    Definição do tipo ListaAdj contendo quatro elementos: id(int), item(char), visitado(int) e um
     ponteiro para o próximo vertice.
 */
 typedef struct listaAdj ListaAdj;
@@ -14,9 +14,12 @@ typedef struct grafo Grafo;
 Grafo* criarGrafo();
 
 /** Adiciona um novo vertice ao grafo */
-void addAresta(Grafo* grafo, int verticeX, int verticeY, char* item);
+void addAresta(Grafo* grafo, int verticeX, int verticeY);
 
 /** Imprime o grafo */
 void imprimirGrafo(Grafo* grafo);
+
+/** Desenha o grafo [Não está completa] */
+void desenharGrafo(Grafo* g);
 
 #endif // GRAFO_H_INCLUDED
